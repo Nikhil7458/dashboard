@@ -1,27 +1,23 @@
-// import { redirect } from "next/navigation"
-// import auth from "@/lib/auth"
-// import { prisma } from "@/lib/prisma"
-// import TaskForm from "@/components/TaskForm"
-// import TaskCard from "@/components/TaskCard"
+
+
+// import { redirect } from "next/navigation";
+// import { getServerSession } from "next-auth/next";
+// import { authOptions } from "@/lib/auth";   // ← this is the only thing you import from auth.ts
+// import { prisma } from "@/lib/prisma";
+// import TaskForm from "@/components/TaskForm";
+// import TaskCard from "@/components/TaskCard";
 
 // export default async function Dashboard() {
-//   type Session = {
-//     user?: {
-//       id?: string
-//       // add other user properties if needed
-//     }
-//     // add other session properties if needed
-//   }
+//   const session = await getServerSession(authOptions);
 
-//   const session: Session | null = (await auth() as unknown) as Session | null
 //   if (!session?.user?.id) {
-//     redirect("/login")
+//     redirect("/login");
 //   }
 
 //   const tasks = await prisma.task.findMany({
 //     where: { userId: session.user.id },
 //     orderBy: { createdAt: "desc" },
-//   })
+//   });
 
 //   return (
 //     <div className="max-w-2xl mx-auto p-6">
@@ -39,15 +35,17 @@
 //         </div>
 //       )}
 //     </div>
-//   )
+//   );
 // }
+
 
 import { redirect } from "next/navigation";
 import { getServerSession } from "next-auth/next";
-import { authOptions } from "@/lib/auth";   // ← this is the only thing you import from auth.ts
+import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import TaskForm from "@/components/TaskForm";
 import TaskCard from "@/components/TaskCard";
+import type { Task } from "@prisma/client";
 
 export default async function Dashboard() {
   const session = await getServerSession(authOptions);
@@ -71,7 +69,7 @@ export default async function Dashboard() {
         <p className="text-gray-500 mt-12 text-center">No tasks yet...</p>
       ) : (
         <div className="mt-8 space-y-3">
-          {tasks.map((task) => (
+          {tasks.map((task: Task) => (
             <TaskCard key={task.id} task={task} />
           ))}
         </div>

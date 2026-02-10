@@ -8,16 +8,25 @@
     "start": "next start"
   },
   "dependencies": {
+    "@prisma/adapter-pg": "^7.3.0",
+    "@prisma/client": "^7.3.0",
+    "bcryptjs": "^3.0.3",
     "next": "16.1.6",
+    "next-auth": "^4.24.13",
+    "pg": "^8.18.0",
     "react": "19.2.3",
     "react-dom": "19.2.3"
   },
   "devDependencies": {
+    "@prisma/config": "^7.3.0",
     "@tailwindcss/postcss": "^4",
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
+    "@types/node": "^20.19.33",
+    "@types/pg": "^8.16.0",
+    "@types/react": "^19.2.13",
+    "@types/react-dom": "^19.2.3",
+    "dotenv": "^17.2.4",
+    "prisma": "^7.3.0",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "typescript": "^5.9.3"
   }
 }
